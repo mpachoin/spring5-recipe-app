@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -118,6 +119,15 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+        if(notes!=null) {
+            notes.setRecipe(this);
+        }
+    }
+
+    public Recipe addIngredient(@NotNull Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
     }
 
     public Difficulty getDifficulty() {
