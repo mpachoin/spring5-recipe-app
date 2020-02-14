@@ -44,6 +44,12 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     @Transactional
+    public RecipeDto findDtoById(Long id) {
+        return RecipeMapper.INSTANCE.RecipeToRecipeDto(findById(id));
+    }
+
+    @Override
+    @Transactional
     public RecipeDto saveRecipeDto(RecipeDto recipeDto) {
         Recipe detachedRecipe = RecipeMapper.INSTANCE.RecipeDtoToRecipe(recipeDto);
 
